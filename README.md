@@ -1,9 +1,12 @@
 # VS4Mac App Center
 
 **App Center** is a Visual Studio for macOS addin to manage Apps in Visual Studio App Center:
-- Create new Apps.
-- Access to existing Apps.
-- Launch UI tests.
+- Manage Apps (list, create, update or delete).
+- List prganizations.
+- Access to app analytics (audience, sessions, etc).
+- Manage tests.
+
+![Analytics](images/analytics.gif)
 
 ## Copyright and license
 
