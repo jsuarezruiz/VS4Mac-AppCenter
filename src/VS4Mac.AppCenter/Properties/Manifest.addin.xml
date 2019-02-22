@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ExtensionModel>
+ <!-- Commands -->
+    <Extension path = "/MonoDevelop/Ide/Commands">
+        <Command 
+            id = "VS4Mac.AppCenter.Commands.AnalyticsCommand"
+            _label = "_Analytics"
+            defaultHandler = "VS4Mac.AppCenter.Commands.AnalyticsCommand" />  
+        <Command 
+            id = "VS4Mac.AppCenter.Commands.ApplicationsCommand"
+            _label = "_Applications"
+            defaultHandler = "VS4Mac.AppCenter.Commands.ApplicationsCommand" />  
+        <Command 
+            id = "VS4Mac.AppCenter.Commands.BuildCommand"
+            _label = "_Build"
+            defaultHandler = "VS4Mac.AppCenter.Commands.BuildCommand" />          
+        <Command 
+            id = "VS4Mac.AppCenter.Commands.OrganizationsCommand"
+            _label = "_Organizations"
+            defaultHandler = "VS4Mac.AppCenter.Commands.OrganizationsCommand" />       
+        <Command 
+            id = "VS4Mac.AppCenter.Commands.ProfileCommand"
+            _label = "_Profile"
+            defaultHandler = "VS4Mac.AppCenter.Commands.ProfileCommand" />  
+        <Command 
+            id = "VS4Mac.AppCenter.Commands.TestCommand"
+            _label = "_Test"
+            defaultHandler = "VS4Mac.AppCenter.Commands.TestCommand" />  
+    </Extension>  
+    <!-- Main Menu Options -->
+    <Extension path = "/MonoDevelop/Ide/MainMenu/Tools">
+        <ItemSet id = "AppCenter" _label = "Visual Studio App Center" autohide="true">
+            <CommandItem id="VS4Mac.AppCenter.Commands.AnalyticsCommand" />  
+            <CommandItem id="VS4Mac.AppCenter.Commands.ApplicationsCommand" />  
+            <CommandItem id="VS4Mac.AppCenter.Commands.BuildCommand" />  
+            <CommandItem id="VS4Mac.AppCenter.Commands.OrganizationsCommand" />  
+            <CommandItem id="VS4Mac.AppCenter.Commands.ProfileCommand" />  
+            <CommandItem id="VS4Mac.AppCenter.Commands.TestCommand" />  
+        </ItemSet>
+    </Extension>  
+</ExtensionModel>

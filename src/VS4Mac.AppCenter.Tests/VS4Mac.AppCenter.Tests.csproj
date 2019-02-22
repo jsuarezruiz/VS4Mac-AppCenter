@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net461</TargetFramework>
+    <IsAddin>false</IsAddin>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="MonoDevelop.Addins" Version="0.4.7" />
+    <PackageReference Include="MonoDevelop.Addins.GuiUnit" Version="0.1.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VS4Mac.AppCenter\VS4Mac.AppCenter.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+</Project>
