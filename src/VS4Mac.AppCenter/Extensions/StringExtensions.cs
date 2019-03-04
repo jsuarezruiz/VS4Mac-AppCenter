@@ -1,4 +1,6 @@
-﻿namespace VS4Mac.AppCenter.Extensions
+﻿using System;
+
+namespace VS4Mac.AppCenter.Extensions
 {
 	public static class StringExtensions
 	{
@@ -9,6 +11,11 @@
 				return string.Empty;
 			}
 			return char.ToUpper(s[0]) + s.Substring(1);
+		}
+
+		public static bool Contains(this string source, string value, StringComparison comparisonType)
+		{
+			return source?.IndexOf(value, comparisonType) >= 0;
 		}
 	}
 }

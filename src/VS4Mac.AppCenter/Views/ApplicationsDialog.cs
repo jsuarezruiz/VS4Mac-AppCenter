@@ -20,6 +20,8 @@ namespace VS4Mac.AppCenter.Views
 	public class ApplicationsDialog : Xwt.Dialog, IApplicationsView
 	{
 		Label _titleLabel;
+		HBox _headerBox;
+		SearchTextEntry _searchEntry;
 		ListView _listView;
 		ListStore _listStore;
 		DataField<string> _nameField;
@@ -46,6 +48,14 @@ namespace VS4Mac.AppCenter.Views
 			_titleLabel = new Label("Applications")
 			{
 				Margin = new WidgetSpacing(0, 6, 0, 6)
+			};
+
+			_headerBox = new HBox();
+
+			_searchEntry = new SearchTextEntry
+			{
+				WidthRequest = 200,
+				PlaceholderText = "Filter..."
 			};
 
 			_listView = new ListView
@@ -98,6 +108,10 @@ namespace VS4Mac.AppCenter.Views
 
 			content.PackStart(_titleLabel);
 
+			_headerBox.PackEnd(_searchEntry);
+
+			content.PackStart(_headerBox);
+
 			VBox mainBox = new VBox
 			{
 				HeightRequest = 150
@@ -121,6 +135,7 @@ namespace VS4Mac.AppCenter.Views
 
 		void AttachEvents()
 		{
+			_searchEntry.Changed += OnSearchEntryChanged;
 			_listView.SelectionChanged += OnListViewSelectionChanged; 
 			_addButton.Clicked += OnAdd;
 			_editButton.Clicked += OnEdit;
@@ -130,6 +145,7 @@ namespace VS4Mac.AppCenter.Views
 
 		protected override void Dispose(bool disposing)
 		{
+			_searchEntry.Changed -= OnSearchEntryChanged;
 			_listView.SelectionChanged -= OnListViewSelectionChanged;
 			_addButton.Clicked -= OnAdd;
 			_editButton.Clicked -= OnEdit;
@@ -160,6 +176,7 @@ namespace VS4Mac.AppCenter.Views
 		{
 			_appsSpinner.Visible = isLoading;
 			_titleLabel.Sensitive = !isLoading;
+			_searchEntry.Sensitive = !isLoading;
 			_listView.Visible = !isLoading;
 			_addButton.Sensitive = !isLoading;
 			_editButton.Sensitive = !isLoading;
@@ -218,6 +235,21 @@ namespace VS4Mac.AppCenter.Views
 			var applicationDetailsDialog = new ApplicationDetailsDialog();
 			var applicationDetailsController = new ApplicationDetailsController(applicationDetailsDialog, application);
 			applicationDetailsDialog.Run(MessageDialog.RootWindow);
+		}
+
+		void OnSearchEntryChanged(object sender, EventArgs e)
+		{
+			var filteredApps = _controller.FilterApplications(_searchEntry.Text);
+
+			_listStore.Clear();
+
+			foreach (var app in filteredApps)
+			{
+				var row = _listStore.AddRow();
+				_listStore.SetValue(row, _nameField, app.Name);
+				_listStore.SetValue(row, _ownerField, app.OwnerName);
+				_listStore.SetValue(row, _appField, app);
+			}
 		}
 
 		void OnListViewSelectionChanged(object sender, EventArgs e)
